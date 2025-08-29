@@ -16,7 +16,8 @@ async def reply(update, context):
         "Content-Type": "application/json"
     }
     data = {
-        "model": "openai/gpt-3.5-turbo",  # أو gpt-4 أو أي موديل مجاني متاح عندك
+        # اختر موديل مجاني
+        "model": "mistralai/mistral-7b-instruct:free",
         "messages": [{"role": "user", "content": user_message}]
     }
 
@@ -32,7 +33,7 @@ async def reply(update, context):
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, reply))
-    print("✅ Bot is running on Railway with OpenRouter...")
+    print("✅ Bot is running on Railway with OpenRouter (Free Model)...")
     app.run_polling()
 
 if __name__ == "__main__":
